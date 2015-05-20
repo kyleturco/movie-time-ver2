@@ -1,0 +1,108 @@
+h1 {
+  color: #000;
+  font-size: 40px;
+}
+
+h2 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 22px;
+  color: #808080;
+}
+
+.movie-header {
+  font-family: Helvetica;
+  font-weight: 700;
+  font-size: 26px;
+}
+
+hr {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+img {
+  max-width: 150px;
+  max-height: 238px;
+  border: 1px solid #dedede;
+  margin-top: 25px;
+  max-height: 213px;
+}
+
+h3 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  color: #808080;
+}
+
+.btn-default {
+	background: #FF8934;
+	margin-bottom: 2px;
+	color: #fff;
+	border-radius: 2px;
+	text-transform: uppercase;
+	font-family: Helvetica;
+	border: none;
+	border-bottom: 2px solid #CF4A1A;
+}
+
+.btn-default:hover {
+	background: #F76802;
+	color: #fff;
+	transition: .5s;
+	border-bottom: 2px solid #CF4A1A;
+}
+
+.btn-danger {
+	margin-top: 10px;
+	margin-left: 7px;
+}
+
+.search-form {
+	margin-bottom: 25px;
+}
+
+.movie-input {
+	padding: 6px;
+	margin-right: 10px;
+}
+
+.table-container{
+  width: 75%;
+  margin: 50px auto 0;
+}
+
+table, table th{
+  text-align: left;
+}
+
+tr {
+	border-top: 1px solid #dedede;
+}
+
+.table-poster {
+	text-align: left;
+}
+
+.watch-list-poster {
+	margin-top:3px;
+}
+
+.table-title {
+	text-align: left;
+	width: 275px;
+}
+
+.movie-title {
+	text-align: left;
+}
+
+.movie-title-list {
+	font-family: Helvetica;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+table img{
+  max-width: 50px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movie Movie Time!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+        <div class="header-section">
+            <h1>It's Movie Time!</h1>
+            <h2>What's up freaky film fanatics?! Enter a movie to get started</h2>
+          <div class="get-movie">
+              <form class="search-form" method="post">
+              <input class="movie-input" name="search" placeholder="Movie" required/>
+              <input class="btn btn-default" type="submit" name="get" value="Search" />
+            </form>
+            <hr>
+          </div>
+        </div>
+        </div>
+        <div class="movie-info-display">
+          <div class="col-md-2">
+              <div class="movie-poster"></div>
+          </div>
+          <div class="col-md-5">
+              <div class="movie-detail"></div>
+          </div>
+          <div class="col-md-5">
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-12 col-sm-12 table-container">
+          <table class="table table-hover watch-list">
+          <tr>
+            <th class="table-poster">Poster</th>
+            <th class="table-title">Title</th>
+            <th>Year</th>
+            <th>IMDB Rating</th>
+            <th>Watched?</th>
+          </tr>
+        </div>
+      </div>
+    </div>
+      <!--end-->
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      <script src="main.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.8.0/lodash.min.js"></script>
+  </body>
+</html>

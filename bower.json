@@ -1,0 +1,22 @@
+{
+  "name": "Movie Time",
+  "version": "1.0.0",
+  "homepage": "https://github.com/kyleturco/movie-time",
+  "authors": [
+    "Kyle Turco <kyleturco@gmail.com>"
+  ],
+  "description": "The world's leading source for movie information",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "~3.8.0",
+    "bootstrap": "~3.3.4"
+  }
+}

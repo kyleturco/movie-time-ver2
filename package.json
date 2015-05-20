@@ -1,0 +1,23 @@
+{
+  "name": "movie-time",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyleturco/movie-time.git"
+  },
+  "author": "Kyle Turco <kyleturco@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kyleturco/movie-time/issues"
+  },
+  "homepage": "https://github.com/kyleturco/movie-time#readme",
+  "devDependencies": {
+    "jade": "^1.9.2",
+    "node-sass": "^3.0.0"
+  }
+}
