@@ -5,14 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="main.css">
+
   </head>
   <body>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-        <div class="header-section">
+        <div class="onLoggedOut">
+          <h1>It's Movie Time!</h1>
+          <div class="form">
+            <h2>Login or sign-up to get started</h2>
+            <input type="email" placeholder="email" required>
+            <input type="password" placeholder="password" required>
+            <input class="doRegister" type="button" value="register">
+            <input class="login-button" type="submit" value="login">
+            <input class="doResetPassword" type="button" value="Reset Password"> 
+          </div> 
+        </div>
+        <!-- <div class="onTempPassword hidden">
+          <h1>Change Password</h1>
+          <div class="form">
+            <input type="password" placeholder="Current Password">
+            <input type="password" placeholder="New Password">
+            <input type="submit" value="Change Password">
+          </div>
+        </div> -->
+        <div class="onLoggedIn">
+          <input class="doLogout" type="button" value="Logout">
+        </div>
+        <div class="header-section hidden">
             <h1>It's Movie Time!</h1>
-            <h2>What's up freaky film fanatics?! Enter a movie to get started</h2>
+            <h2></h2>
           <div class="get-movie">
               <form class="search-form" method="post">
               <input class="movie-input" name="search" placeholder="Movie" required/>
@@ -45,8 +68,9 @@
       </div>
     </div>
       <!--end-->
+      <script src="https://cdn.firebase.com/js/client/2.2.5/firebase.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-      <script src="main.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.8.0/lodash.min.js"></script>
+      <script src="main.js"></script>
   </body>
 </html>

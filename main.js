@@ -2,11 +2,161 @@ $('.table-container').hide();
 var omdb_url = 'http://www.omdbapi.com/?';
 var $movieSearch = $('.search-form');
 var $searchBar = $('input[name=search]')[0];
-var FIREBASE_URL = "https://movie-time.firebaseio.com/movie-time.json";
+var FIREBASE_URL = "https://movie-time.firebaseio.com/";
 var $movieDetails = $(".movie-info-display");
 var $table = $("table");
+var fb = new Firebase(FIREBASE_URL);
+var $loginBtn = $('.login-button');
 
-$.get(FIREBASE_URL, function(data){
+var onLoggedOut = $('.onLoggedOut');
+var onLoggedIn = $('.onLoggedIn');
+var headerSection = $('.header-section');
+
+//all the JS for the login process
+
+//temporary password section
+
+// $('.onTempPassword form').submit(function () {
+//   var email = fb.getAuth().password.email;
+//   var oldPw = $('.onTempPassword input:nth-child(1)').val();
+//   var newPw = $('.onTempPassword input:nth-child(2)').val();
+  
+//   fb.changePassword({
+//     email: email,
+//     oldPassword: oldPw,
+//     newPassword: newPw
+//   }, function(err) {
+//     if (err) {
+//       alert(err.toString());
+//     } else {
+//       fb.unauth();
+//     }
+//   });
+  
+//   event.preventDefault();
+// })
+
+// $('.doResetPassword').click(function () {
+//   var email = $('.onLoggedOut input[type="email"]').val();
+  
+//   fb.resetPassword({
+//     email: email
+//   }, function (err) {
+//     if (err) {
+//       alert(err.toString());
+//     } else {
+//       alert('Check your email!');
+//     }
+//   });
+// });
+
+// $('.doLogout').click(function () {
+//   fb.unauth();
+// })
+
+$('.doRegister').click(function () {
+  var email = $('.onLoggedOut input[type="email"]').val();
+  var password = $('.onLoggedOut input[type="password"]').val();
+
+  fb.createUser({
+    email: email,
+    password: password
+  }, function (err, userData) {
+    if (err) {
+      alert(err.toString());
+    } else {
+      doLogin(email, password);
+    }
+  });
+  
+  event.preventDefault();
+});
+
+$('.onLoggedOut form').submit(function () {
+  var email = $('.onLoggedOut input[type="email"]').val();
+  var password = $('.onLoggedOut input[type="password"]').val();
+
+  doLogin(email, password);
+  event.preventDefault();
+});
+
+function clearLoginForm () {
+  $('input[type="email"]').val('');
+  $('input[type="password"]').val('');
+}
+
+function saveAuthData (authData) {
+  $.ajax({
+    method: 'PUT',
+    url: `${FIREBASE_URL}/users/${authData.uid}/profile.json`,
+    data: JSON.stringify(authData)
+  });
+}
+
+function doLogin (email, password, cb) {
+  fb.authWithPassword({
+    email: email,
+    password: password
+  }, function (err, authData) {
+    if (err) {
+      alert(err.toString());
+    } else {
+      saveAuthData(authData);
+      typeof cb === 'function' && cb(authData);
+    }
+  });
+}
+
+fb.onAuth(function (authData){
+
+  if (authData && authData.password) {
+    onLoggedOut.removeClass('hidden');
+    headerSection.addClass('hidden');
+    $('.onLoggedIn h1').text(`What it is ${authData.password.email}? Enter a movie to get started`);
+  } else {
+    onLoggedIn.removeClass('hidden');
+    onLoggedOut.addClass('hidden');
+  }
+});
+
+$loginBtn.on('click', function() {
+  console.log("hello!!!!");
+  var authData = fb.getAuth();
+  if (authData && authData.password) {
+    onLoggedOut.addClass('hidden');
+    headerSection.removeClass('hidden');
+    } else {
+      alert("Your password no work!");
+    }
+  });
+
+// fb.onAuth(function (authData) {
+//   var onLoggedOut = $('.onLoggedOut');
+//   var onLoggedIn = $('.onLoggedIn');
+//   var onTempPassword = $('.onTempPassword');
+
+//   if (authData && authData.password.isTemporaryPassword) {
+//     onTempPassword.removeClass('hidden');
+//     onLoggedIn.addClass('hidden');
+//     onLoggedOut.addClass('hidden');
+//   } else if (authData) {
+//     onLoggedIn.removeClass('hidden');
+//     onLoggedOut.addClass('hidden');
+//     onTempPassword.addClass('hidden');
+//     $('.onLoggedIn h1').text(`Hello ${authData.password.email}`);    
+//   } else {
+//     onLoggedOut.removeClass('hidden');
+//     onLoggedIn.addClass('hidden');
+//     onTempPassword.addClass('hidden');
+//   }
+  
+//   clearLoginForm();
+// });
+
+
+//all the JS for the movie part
+
+$.get(`${FIREBASE_URL}/movie-time.json`, function(data){
   if (data===null){
     $table.hide();
   } else {
@@ -53,7 +203,7 @@ $movieDetails.on('click', '.watch-button', function() {
   var url = omdb_url + "t=" + movie + "&r=json";
   $('.table-container').show();
   $.get(url, function (data) {
-    $.post(FIREBASE_URL, JSON.stringify(data), function(res){
+    $.post(`${FIREBASE_URL}/movie-time.json`, JSON.stringify(data), function(res){
       addTableDetail(data, res.name);
     })
   }, 'jsonp');
@@ -61,7 +211,6 @@ $movieDetails.on('click', '.watch-button', function() {
 
 
 function addTableDetail(data, id){
-  console.log(id);
   var $table = $("table");
   $table.append("<tr></tr>");
   var $target = $("tr:last");
@@ -79,7 +228,7 @@ $table.on('click', 'button', function(){
   var $id = $movie.attr('data-id');
   console.log($id);
   $movie.remove();
-  var deleteURL = FIREBASE_URL.slice(0, -5) + '/' + $id + '.json';
+  var deleteURL = `${FIREBASE_URL}/movie-time.json`.slice(0, -5) + '/' + $id + '.json';
   $.ajax({
   url: deleteURL,
   type: 'DELETE'
