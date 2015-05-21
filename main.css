@@ -1,3 +1,39 @@
+header {
+  width: 100%;
+  float: left;
+  background-color: #efefef;
+  border-bottom: 1px solid #dedede;
+}
+
+.logo {
+	font-family: Cabin;
+	color: #505050;
+	font-size: 26px;
+	display: inline-block;
+	margin: 12px;
+}
+
+.header .logo .fa {
+	color: #ff8934;
+	font-size: 22px;
+}
+
+.header .btn-default {
+	margin-top: 12px;
+	margin-right: 15px;
+	background-color: #606060;
+	font-size: 12px;
+	border-bottom: none;
+	padding: 5px;
+}
+
+.header .btn-default:hover {
+	background: #303030;
+	color: #fff;
+	transition: .5s;
+	border-bottom: none;
+}
+
 h1 {
   color: #000;
   font-size: 40px;
@@ -8,6 +44,10 @@ h2 {
   font-weight: 300;
   font-size: 22px;
   color: #808080;
+}
+
+h3 {
+	font-size: 18px;
 }
 
 .movie-header {
@@ -105,4 +145,8 @@ tr {
 
 table img{
   max-width: 50px;
+}
+
+.doLogout {
+	float: right;
 }

@@ -12,47 +12,45 @@ var onLoggedOut = $('.onLoggedOut');
 var onLoggedIn = $('.onLoggedIn');
 var headerSection = $('.header-section');
 
-//all the JS for the login process
+/////////
 
-//temporary password section
-
-// $('.onTempPassword form').submit(function () {
-//   var email = fb.getAuth().password.email;
-//   var oldPw = $('.onTempPassword input:nth-child(1)').val();
-//   var newPw = $('.onTempPassword input:nth-child(2)').val();
+$('.onTempPassword form').submit(function () {
+  var email = fb.getAuth().password.email;
+  var oldPw = $('.onTempPassword input:nth-child(1)').val();
+  var newPw = $('.onTempPassword input:nth-child(2)').val();
   
-//   fb.changePassword({
-//     email: email,
-//     oldPassword: oldPw,
-//     newPassword: newPw
-//   }, function(err) {
-//     if (err) {
-//       alert(err.toString());
-//     } else {
-//       fb.unauth();
-//     }
-//   });
+  fb.changePassword({
+    email: email,
+    oldPassword: oldPw,
+    newPassword: newPw
+  }, function(err) {
+    if (err) {
+      alert(err.toString());
+    } else {
+      fb.unauth();
+    }
+  });
   
-//   event.preventDefault();
-// })
+  event.preventDefault();
+})
 
-// $('.doResetPassword').click(function () {
-//   var email = $('.onLoggedOut input[type="email"]').val();
+$('.doResetPassword').click(function () {
+  var email = $('.onLoggedOut input[type="email"]').val();
   
-//   fb.resetPassword({
-//     email: email
-//   }, function (err) {
-//     if (err) {
-//       alert(err.toString());
-//     } else {
-//       alert('Check your email!');
-//     }
-//   });
-// });
+  fb.resetPassword({
+    email: email
+  }, function (err) {
+    if (err) {
+      alert(err.toString());
+    } else {
+      alert('Check your email!');
+    }
+  });
+});
 
-// $('.doLogout').click(function () {
-//   fb.unauth();
-// })
+$('.doLogout').click(function () {
+  fb.unauth();
+})
 
 $('.doRegister').click(function () {
   var email = $('.onLoggedOut input[type="email"]').val();
@@ -107,54 +105,34 @@ function doLogin (email, password, cb) {
   });
 }
 
-fb.onAuth(function (authData){
+fb.onAuth(function (authData) {
+  var onLoggedOut = $('.onLoggedOut');
+  var onLoggedIn = $('.onLoggedIn');
+  var onTempPassword = $('.onTempPassword');
+  var doLogout = $('.doLogout');
 
-  if (authData && authData.password) {
-    onLoggedOut.removeClass('hidden');
-    headerSection.addClass('hidden');
-    $('.onLoggedIn h1').text(`What it is ${authData.password.email}? Enter a movie to get started`);
-  } else {
-    onLoggedIn.removeClass('hidden');
+  if (authData && authData.password.isTemporaryPassword) {
+    onTempPassword.removeClass('hidden');
+    onLoggedIn.addClass('hidden');
     onLoggedOut.addClass('hidden');
+  } else if (authData) {
+    onLoggedIn.removeClass('hidden');
+    doLogout.removeClass('hidden');
+    onLoggedOut.addClass('hidden');
+    onTempPassword.addClass('hidden');
+    $('.onLoggedIn h2').text(`Hello ${authData.password.email}!`);    
+  } else {
+    onLoggedOut.removeClass('hidden');
+    onLoggedIn.addClass('hidden');
+    onTempPassword.addClass('hidden');
+    doLogout.addClass('hidden');
   }
+  
+  clearLoginForm();
 });
 
-$loginBtn.on('click', function() {
-  console.log("hello!!!!");
-  var authData = fb.getAuth();
-  if (authData && authData.password) {
-    onLoggedOut.addClass('hidden');
-    headerSection.removeClass('hidden');
-    } else {
-      alert("Your password no work!");
-    }
-  });
 
-// fb.onAuth(function (authData) {
-//   var onLoggedOut = $('.onLoggedOut');
-//   var onLoggedIn = $('.onLoggedIn');
-//   var onTempPassword = $('.onTempPassword');
-
-//   if (authData && authData.password.isTemporaryPassword) {
-//     onTempPassword.removeClass('hidden');
-//     onLoggedIn.addClass('hidden');
-//     onLoggedOut.addClass('hidden');
-//   } else if (authData) {
-//     onLoggedIn.removeClass('hidden');
-//     onLoggedOut.addClass('hidden');
-//     onTempPassword.addClass('hidden');
-//     $('.onLoggedIn h1').text(`Hello ${authData.password.email}`);    
-//   } else {
-//     onLoggedOut.removeClass('hidden');
-//     onLoggedIn.addClass('hidden');
-//     onTempPassword.addClass('hidden');
-//   }
-  
-//   clearLoginForm();
-// });
-
-
-//all the JS for the movie part
+/////////
 
 $.get(`${FIREBASE_URL}/movie-time.json`, function(data){
   if (data===null){
