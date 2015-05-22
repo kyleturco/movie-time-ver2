@@ -15,6 +15,24 @@ var headerSection = $('.header-section');
 
 /////////
 
+
+// $movieSearch.submit(function () {
+//   var movie = $searchBar.value;
+//   var URL = omdb_url + "t=" + movie + "&r=json";
+//   var uid = fb.getAuth().uid;
+//   var token = fb.getAuth().token;
+//   var postUrl = `${FIREBASE_URL}/users/${uid}/movie-time.json?auth=${token}`;
+    
+//   $.post(postUrl, JSON.stringify(url), function (res) {
+//     addMovieDetail({url: url});
+//     clearForms();
+//     // res = { name: '-Jk4dfDd123' }
+//   });
+  
+//   event.preventDefault();
+// })
+
+
 $('.onTempPassword form').submit(function () {
   var email = fb.getAuth().password.email;
   var oldPw = $('.onTempPassword input:nth-child(1)').val();
@@ -107,6 +125,13 @@ function doLogin (email, password, cb) {
     }
   });
 }
+
+// function getUserData (cb) {
+//   var uid = fb.getAuth().uid;
+//   var token = fb.getAuth().token;
+//   var getUrl = `${FIREBASE_URL}/users/${uid}/movie-data.json?auth=${token}`;
+//   $.get(getUrl, cb);
+// }
 
 fb.onAuth(function (authData) {
   var onLoggedOut = $('.onLoggedOut');
