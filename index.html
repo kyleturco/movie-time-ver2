@@ -3,26 +3,30 @@
   <head>
     <title>Movie Movie Time!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="main.css">
     <link rel='stylesheet' id='prefix-font-awesome-css'  href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css' type='text/css' media='all' />
     <link href='http://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <header class="header" role="banner" itemtype="http://schema.org/WPHeader">
+    <header class="header" role="banner">
       <h1 class="logo"><i class="fa fa-rocket"></i> It's Movie Time!</h1>
-      <input class="doLogout hidden btn-default" type="button" value="Logout">
+      <div class="header-user-section hidden">
+        <h2></h2>
+        <input class="doLogout btn-default" type="button" value="Logout">
+      </div>
     </header>
     <div class="container">
-        <div class="col-md-12">
+        <div class="form-signin">
           <div class="onLoggedOut">
               <h1>Welcome</h1>
               <h2>Login or sign-up to get started</h2>
               <form>
-                <input type="email" placeholder="email" required>
-                <input type="password" placeholder="password" required>
-                <input class="doRegister" type="button" value="register">
-                <input class="login-button" type="submit" value="login">
+                <input class="input-box" type="email" placeholder="email" required>
+                <input class="input-box" type="password" placeholder="password" required>
+                <input class="login-button" type="submit" value="Login">
+                <input class="doRegister" type="button" value="Register">
+                <hr>
                 <input class="doResetPassword" type="button" value="Reset Password"> 
               </form>
           </div>
@@ -34,14 +38,12 @@
               <input type="submit" value="Change Password">
             </div>
           </div>
+        </div>
+        <div class="col-md-12">
           <div class="onLoggedIn hidden">
               <div class="header-section">
                 <h2></h2>
-                <div class="col-md-4">
-                  <p>Enter a movie name to get started. If you really love the movie, add it to your 'watch list'. Once you've seen it, just mark it as watched.</p>
-                </div>
-                <div class="col-md-8">
-                </div>
+                  <p>Enter a movie name to get started. If you really love the movie, add it to your 'watch list'. <br> Once you've seen it, just mark it as watched.</p>
               </div>
             <div class="get-movie">
                  <form class="search-form" method="post">
@@ -51,8 +53,6 @@
                <hr>
               </div>
             </div>
-          </div>
-        </div>
         <div class="movie-info-display">
           <div class="col-md-2">
               <div class="movie-poster"></div>
@@ -73,6 +73,7 @@
               <th>Watched?</th>
             </tr>
         </div>
+      </div>
     </div>
       <!--end-->
       <script src="https://cdn.firebase.com/js/client/2.2.5/firebase.js"></script>

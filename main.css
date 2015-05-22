@@ -1,8 +1,10 @@
+/** Header Styles **/
+
 header {
-  width: 100%;
-  float: left;
-  background-color: #efefef;
-  border-bottom: 1px solid #dedede;
+  	width: 100%;
+  	float: left;
+  	background-color: #efefef;
+  	border-bottom: 1px solid #dedede;
 }
 
 .logo {
@@ -13,26 +15,118 @@ header {
 	margin: 12px;
 }
 
+.header-user-section {
+	display: inline-block;
+	float: right;
+}
+
 .header .logo .fa {
 	color: #ff8934;
 	font-size: 22px;
 }
 
+.header h2 {
+	display: inline-block;
+	padding-right: 15px;
+	font-size: 16px;
+	color: #606060;
+}
+
 .header .btn-default {
 	margin-top: 12px;
 	margin-right: 15px;
-	background-color: #606060;
 	font-size: 12px;
 	border-bottom: none;
 	padding: 5px;
+	padding-right:10px;
+	padding-left: 10px;
+	border: 1px solid #606060;
+	color: #606060;
+	background-color: transparent;
 }
 
 .header .btn-default:hover {
-	background: #303030;
+	background: #FF8934;
 	color: #fff;
 	transition: .5s;
 	border-bottom: none;
+	border: 1px solid #FF8934;
 }
+
+/** Signin Form Styles **/
+
+.onLoggedOut h1, h2 {
+	text-align: center;
+}
+
+.onLoggedOut {
+	max-width: 330px;
+ 	padding: 15px;
+ 	margin: 0 auto;
+ 	margin-top:35px;
+ 	border: 1px solid #dedede;
+ 	border-radius: 5px;
+}
+
+.input-box {
+	min-width: 100%;
+	padding: 5px 5px 5px 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.login-button {
+	min-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #6fcf5e;
+	color: #fff;
+	font-size: 18px;
+	font-family: Cabin;
+	border: none;
+	padding: 9px;
+	margin-top:10px;
+	margin-bottom:5px;
+	border-radius: 2px;
+}
+
+.login-button:hover {
+	background: #45a549;
+	color: #fff;
+
+}
+
+.doRegister {
+	min-width: 100%;
+	background-color: #ff8934;
+	color: #fff;
+	font-size: 18px;
+	font-family: Cabin;
+	border: none;
+	padding: 9px;
+	margin-top:10px;
+	margin-bottom:5px;
+	border-radius: 2px;
+}
+
+.doRegister:hover {
+	background: #f76802;
+	color: #fff;
+}
+
+.doResetPassword {
+	min-width: 100%;
+	background-color: transparent;
+	color: #303030;
+	font-size: 16px;
+	border: none;
+	text-decoration: underline;
+}
+
+.doResetPassword:hover {
+	color: #ff8934;
+}
+/** Font Styles **/
 
 h1 {
   color: #000;
@@ -42,8 +136,9 @@ h1 {
 h2 {
   font-family: Helvetica, Arial, sans-serif;
   font-weight: 300;
-  font-size: 22px;
+  font-size: 20px;
   color: #808080;
+  text-align: left;
 }
 
 h3 {
@@ -85,6 +180,9 @@ h3 {
 	border: none;
 	border-bottom: 2px solid #CF4A1A;
 }
+
+
+/** Button Styles **/
 
 .btn-default:hover {
 	background: #F76802;

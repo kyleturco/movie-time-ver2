@@ -7,6 +7,7 @@ var $movieDetails = $(".movie-info-display");
 var $table = $("table");
 var fb = new Firebase(FIREBASE_URL);
 var $loginBtn = $('.login-button');
+var $logoutBtn = $('doLogout');
 
 var onLoggedOut = $('.onLoggedOut');
 var onLoggedIn = $('.onLoggedIn');
@@ -49,7 +50,9 @@ $('.doResetPassword').click(function () {
 });
 
 $('.doLogout').click(function () {
+  window.location.reload();
   fb.unauth();
+
 })
 
 $('.doRegister').click(function () {
@@ -109,7 +112,7 @@ fb.onAuth(function (authData) {
   var onLoggedOut = $('.onLoggedOut');
   var onLoggedIn = $('.onLoggedIn');
   var onTempPassword = $('.onTempPassword');
-  var doLogout = $('.doLogout');
+  var headerUser = $('.header-user-section');
 
   if (authData && authData.password.isTemporaryPassword) {
     onTempPassword.removeClass('hidden');
@@ -117,19 +120,21 @@ fb.onAuth(function (authData) {
     onLoggedOut.addClass('hidden');
   } else if (authData) {
     onLoggedIn.removeClass('hidden');
-    doLogout.removeClass('hidden');
+    headerUser.removeClass('hidden');
     onLoggedOut.addClass('hidden');
     onTempPassword.addClass('hidden');
-    $('.onLoggedIn h2').text(`Hello ${authData.password.email}!`);    
+    $('.onLoggedIn h2').text(`Hello ${authData.password.email}!`);
+    $('.header h2').text(`${authData.password.email}`);       
   } else {
     onLoggedOut.removeClass('hidden');
     onLoggedIn.addClass('hidden');
     onTempPassword.addClass('hidden');
-    doLogout.addClass('hidden');
+    headerUser.addClass('hidden');
   }
   
   clearLoginForm();
 });
+
 
 
 /////////
