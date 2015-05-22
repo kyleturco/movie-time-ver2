@@ -10,13 +10,13 @@
   </head>
   <body>
     <header class="header" role="banner">
-      <h1 class="logo"><i class="fa fa-rocket"></i> It's Movie Time!</h1>
-      <div class="header-user-section hidden">
+        <h1 class="logo"><i class="fa fa-rocket"></i> It's Movie Time!</h1>
+          <div class="header-user-section hidden">
         <h2></h2>
-        <input class="doLogout btn-default" type="button" value="Logout">
-      </div>
-    </header>
-    <div class="container">
+          <input class="doLogout btn-default" type="button" value="Logout">
+        </div>
+    </header>  
+    <div id="container">
         <div class="form-signin">
           <div class="onLoggedOut">
               <h1>Welcome</h1>
@@ -72,9 +72,13 @@
               <th>IMDB Rating</th>
               <th>Watched?</th>
             </tr>
+          </table>
         </div>
       </div>
-    </div>
+    </div> 
+      <div id="footer">  
+          <p>MovieTime 2015 | All Rights Reserved</p>
+      </div>
       <!--end-->
       <script src="https://cdn.firebase.com/js/client/2.2.5/firebase.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

@@ -1,8 +1,14 @@
+#container {
+	margin-left: auto;
+	margin-right: auto; 
+	position: relative; /**make #wrapper position non-static **/
+	min-height: 99%;
+}
+
 /** Header Styles **/
 
 header {
   	width: 100%;
-  	float: left;
   	background-color: #efefef;
   	border-bottom: 1px solid #dedede;
 }
@@ -170,6 +176,8 @@ h3 {
   color: #808080;
 }
 
+/** Button Styles **/
+
 .btn-default {
 	background: #FF8934;
 	margin-bottom: 2px;
@@ -181,9 +189,6 @@ h3 {
 	border-bottom: 2px solid #CF4A1A;
 }
 
-
-/** Button Styles **/
-
 .btn-default:hover {
 	background: #F76802;
 	color: #fff;
@@ -194,6 +199,10 @@ h3 {
 .btn-danger {
 	margin-top: 10px;
 	margin-left: 7px;
+}
+
+.watch-button {
+	margin-bottom: 15px;
 }
 
 .search-form {
@@ -247,4 +256,25 @@ table img{
 
 .doLogout {
 	float: right;
+}
+
+.header-section {
+	margin-top: 45px;
+}
+
+
+/** Footer Styles **/
+#footer {
+	border-top: 1px solid #dedede;
+	display: block;
+	width: 100%;
+	height: 75px;
+	margin-top: 50px;
+	position: absolute;
+
+}
+
+#footer p {
+	margin-top: 15px;
+	color: #808080;
 }
