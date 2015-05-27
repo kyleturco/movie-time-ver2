@@ -1,4 +1,4 @@
-$('.table-container').hide();
+// $('.table-container').hide();
 var omdb_url = 'http://www.omdbapi.com/?';
 var $movieSearch = $('.search-form');
 var $searchBar = $('input[name=search]')[0];
@@ -208,18 +208,6 @@ function addMovieDetail(data, id) {
 
   }
 }
- 
-// $movieDetails.on('click', '.watch-button', function() {
-//   console.log("hello!!!");
-//   var movie = $searchBar.value;
-//   var url = omdb_url + "t=" + movie + "&r=json";
-//   $('.table-container').show();
-//   $.get(url, function (data) {
-//     $.post(`${FIREBASE_URL}/movie-time.json`, JSON.stringify(data), function(res){
-//       addTableDetail(data, res.name);
-//     })
-//   }, 'jsonp');
-//  });
 
 $movieDetails.on('click', '.watch-button', function () {
   var movie = $searchBar.value;
@@ -227,7 +215,7 @@ $movieDetails.on('click', '.watch-button', function () {
   var uid = fb.getAuth().uid;
   var token = fb.getAuth().token;
   var postUrl = `${FIREBASE_URL}users/${fb.getAuth().uid}/movie-time.json?auth=${fb.getAuth().token}`;
-  $('.table-container').show();
+  // $('.table-container').show();
   $.get(URL, function (data) { 
     $.post(postUrl, JSON.stringify(data), function (res) {
       addTableDetail(data, res.name);

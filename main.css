@@ -219,8 +219,9 @@ h3 {
 
 .table-container{
   width: 75%;
-  margin: 50px auto 0;
+  margin: 10px auto 0;
   margin-bottom: 50px;
+  padding-left: 0px;
 }
 
 table, table th{
@@ -264,6 +265,11 @@ table img{
 
 .header-section {
 	margin-top: 45px;
+}
+
+/** Movie Display Styles **/
+.movie-info-display .col-md-2 {
+	padding-left: 0px;
 }
 
 
