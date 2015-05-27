@@ -168,15 +168,15 @@ fb.onAuth(function (authData) {
 
 /////////
 
-// $.get(`${FIREBASE_URL}users/${fb.getAuth().uid}/movie-time.json?auth=${fb.getAuth().token}`, function(data){
-//   if (data===null){
-//     $table.hide();
-//   } else {
-//     Object.keys(data).forEach(function(id){
-//       addTableDetail(data[id], id);
-//     });
-//   }
-// });
+$.get(`${FIREBASE_URL}users/${fb.getAuth().uid}/movie-time.json?auth=${fb.getAuth().token}`, function(data){
+  if (data===null){
+    $table.hide();
+  } else {
+    Object.keys(data).forEach(function(id){
+      addTableDetail(data[id], id);
+    });
+  }
+});
 
 $movieSearch.on('submit', function() {
   var movie = $searchBar.value;
