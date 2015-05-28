@@ -19,28 +19,11 @@ var headerSection = $('.header-section');
 /////////
 
 
-
-
-// $movieDetails.on('click', '.watch-button', function() {
-//   console.log("hello!!!");
-//   var movie = $searchBar.value;
-//   var url = omdb_url + "t=" + movie + "&r=json";
-//   $('.table-container').show();
-//   $.get(url, function (data) {
-//     $.post(`${FIREBASE_URL}/movie-time.json`, JSON.stringify(data), function(res){
-//       addTableDetail(data, res.name);
-//     })
-//   }, 'jsonp');
-//  });
-
-
-
-
 $('.onTempPassword form').submit(function () {
   var email = fb.getAuth().password.email;
   var oldPw = $('.onTempPassword input:nth-child(1)').val();
   var newPw = $('.onTempPassword input:nth-child(2)').val();
-  
+
   fb.changePassword({
     email: email,
     oldPassword: oldPw,
@@ -52,13 +35,13 @@ $('.onTempPassword form').submit(function () {
       fb.unauth();
     }
   });
-  
+
   event.preventDefault();
 })
 
 $('.doResetPassword').click(function () {
   var email = $('.onLoggedOut input[type="email"]').val();
-  
+
   fb.resetPassword({
     email: email
   }, function (err) {
@@ -90,7 +73,7 @@ $('.doRegister').click(function () {
       doLogin(email, password);
     }
   });
-  
+
   event.preventDefault();
 });
 
@@ -137,6 +120,14 @@ function getUserData (cb) {
   console.log("what does this function do?")
 }
 
+function getMovies () {
+  $.get(`${FIREBASE_URL}users/${fb.getAuth().uid}/movie-time.json?auth=${fb.getAuth().token}`, function(data){
+    Object.keys(data).forEach(function(id){
+      addTableDetail(data[id], id);
+    });
+  });
+}
+
 fb.onAuth(function (authData) {
   var onLoggedOut = $('.onLoggedOut');
   var onLoggedIn = $('.onLoggedIn');
@@ -153,14 +144,15 @@ fb.onAuth(function (authData) {
     onLoggedOut.addClass('hidden');
     onTempPassword.addClass('hidden');
     $('.onLoggedIn h2').text(`Hello ${authData.password.email}!`);
-    $('.header h2').text(`${authData.password.email}`);       
+    $('.header h2').text(`${authData.password.email}`);
+    getMovies();
   } else {
     onLoggedOut.removeClass('hidden');
     onLoggedIn.addClass('hidden');
     onTempPassword.addClass('hidden');
     headerUser.addClass('hidden');
   }
-  
+
   clearLoginForm();
 });
 
@@ -168,15 +160,6 @@ fb.onAuth(function (authData) {
 
 /////////
 
-$.get(`${FIREBASE_URL}users/${fb.getAuth().uid}/movie-time.json?auth=${fb.getAuth().token}`, function(data){
-  if (data===null){
-    $table.hide();
-  } else {
-    Object.keys(data).forEach(function(id){
-      addTableDetail(data[id], id);
-    });
-  }
-});
 
 $movieSearch.on('submit', function() {
   var movie = $searchBar.value;
@@ -204,7 +187,7 @@ function addMovieDetail(data, id) {
     $target.append("<h3>" + data.Year + "</h3>");
     $target.append("<h3>" + "Rated: " + data.Rated + "</h3>");
     $target.append("<p>" + data.Plot + "</p>");
-    $target.append("<input class='btn btn-default watch-button' type='submit' value='Add Movie to List'></input>"); 
+    $target.append("<input class='btn btn-default watch-button' type='submit' value='Add Movie to List'></input>");
 
   }
 }
@@ -216,12 +199,12 @@ $movieDetails.on('click', '.watch-button', function () {
   var token = fb.getAuth().token;
   var postUrl = `${FIREBASE_URL}users/${fb.getAuth().uid}/movie-time.json?auth=${fb.getAuth().token}`;
   // $('.table-container').show();
-  $.get(URL, function (data) { 
+  $.get(URL, function (data) {
     $.post(postUrl, JSON.stringify(data), function (res) {
       addTableDetail(data, res.name);
     })
 
-    // clearForms();
+    clearForms();
     // res = { name: '-Jk4dfDd123' }
   });
   event.preventDefault();
