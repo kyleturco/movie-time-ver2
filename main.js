@@ -10,6 +10,7 @@ var $loginBtn = $('.login-button');
 var $logoutBtn = $('doLogout');
 var $table = $("table");
 var $tableHeader = $(".table-header");
+var $closeMovie = $('.close-button');
 
 var onLoggedOut = $('.onLoggedOut');
 var onLoggedIn = $('.onLoggedIn');
@@ -174,6 +175,7 @@ $movieSearch.on('submit', function() {
   console.log(URL);
   $.get(URL, function(data) {
     addMovieDetail(data);
+    $movieDetails.show();
   })
   return false;
 })
@@ -195,9 +197,15 @@ function addMovieDetail(data, id) {
     $target.append("<h3>" + "Rated: " + data.Rated + "</h3>");
     $target.append("<p>" + data.Plot + "</p>");
     $target.append("<input class='btn btn-default watch-button' type='submit' value='Add Movie to List'></input>");
+    $target.append("<input class='btn btn-default close-button' id='close-button' type='submit' value='Close Listing'></input>");
 
   }
 }
+
+$movieDetails.on('click', '.close-button', function (){
+  console.log("yo this workin?");
+  $movieDetails.hide();
+})
 
 $movieDetails.on('click', '.watch-button', function () {
   var movie = $searchBar.value;
@@ -211,12 +219,11 @@ $movieDetails.on('click', '.watch-button', function () {
       addTableDetail(data, res.name);
     })
 
-    clearForms();
+    // clearForms();
     // res = { name: '-Jk4dfDd123' }
   });
   event.preventDefault();
 })
-
 
 function addTableDetail(data, id){
   $table.append("<tr></tr>");

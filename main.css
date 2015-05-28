@@ -208,6 +208,27 @@ h3 {
 	margin-bottom: 15px;
 }
 
+.close-button {
+  margin-bottom: 15px;
+  margin-left: 15px;
+  font-size: 12px;
+  border-bottom: none;
+  padding: 5px;
+  padding-right:10px;
+  padding-left: 10px;
+  border: 1px solid #606060;
+  color: #606060;
+  background-color: transparent;
+}
+
+.close-button:hover {
+  background: #FF8934;
+  color: #fff;
+  transition: .5s;
+  border-bottom: none;
+  border: 1px solid #FF8934;
+}
+
 .search-form {
 	margin-bottom: 25px;
 }
