@@ -8,6 +8,8 @@ var $table = $("table");
 var fb = new Firebase(FIREBASE_URL);
 var $loginBtn = $('.login-button');
 var $logoutBtn = $('doLogout');
+var $table = $("table");
+var $tableHeader = $(".table-header");
 
 var onLoggedOut = $('.onLoggedOut');
 var onLoggedIn = $('.onLoggedIn');
@@ -138,11 +140,14 @@ fb.onAuth(function (authData) {
     onTempPassword.removeClass('hidden');
     onLoggedIn.addClass('hidden');
     onLoggedOut.addClass('hidden');
+    headerUser.removeClass('hidden');
   } else if (authData) {
     onLoggedIn.removeClass('hidden');
     headerUser.removeClass('hidden');
     onLoggedOut.addClass('hidden');
     onTempPassword.addClass('hidden');
+    $table.show();
+    $tableHeader.show();
     $('.onLoggedIn h2').text(`Hello ${authData.password.email}!`);
     $('.header h2').text(`${authData.password.email}`);
     getMovies();
@@ -151,6 +156,8 @@ fb.onAuth(function (authData) {
     onLoggedIn.addClass('hidden');
     onTempPassword.addClass('hidden');
     headerUser.addClass('hidden');
+    $table.hide();
+    $tableHeader.hide();
   }
 
   clearLoginForm();
@@ -212,7 +219,6 @@ $movieDetails.on('click', '.watch-button', function () {
 
 
 function addTableDetail(data, id){
-  var $table = $("table");
   $table.append("<tr></tr>");
   var $target = $("tr:last");
   $target.attr("data-id", id);

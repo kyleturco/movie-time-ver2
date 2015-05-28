@@ -272,6 +272,10 @@ table img{
 	padding-left: 0px;
 }
 
+.movie-info-display .col-md-5 {
+  padding-left: 0px;
+}
+
 
 /** Footer Styles **/
 .footer {
